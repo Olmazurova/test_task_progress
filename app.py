@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, flash
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = '123456789qwerty'
 menu = [{"name": "Информация", "url": "information"},
         {"name": "Достижения", "url": "achievements"},
         {"name": "Статистика", "url": "statistics"}]
@@ -12,8 +12,14 @@ def index():
     return render_template('index.html', menu=menu)
 
 
-@app.route("/achievements")
+@app.route("/achievements", methods=["POST", "GET"])
 def achievements():
+    if request.method == 'POST':
+        if len(request.form["username"]) > 2:
+            flash('Достижение добавлено', category='success')
+        else:
+            flash("Ошибка отправки", category='error')
+
     print(url_for('achievements'))
     return render_template('achievements.html', title="Достижения", menu=menu)
 
@@ -23,10 +29,8 @@ def profile(username, path):
     return f"Пользователь: {username}"
 
 
-@app.route("/statistics", methods=["POST", "GET"])
+@app.route("/statistics")
 def statistics():
-    if request.method == 'POST':
-        print(request.form)
     return render_template('statistics.html', title="Статистика достижений", menu=menu)
 
 # with app.test_request_context():  # искусственное создание запроса, чтобы посмотреть как работает функция

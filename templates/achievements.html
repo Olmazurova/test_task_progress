@@ -2,5 +2,15 @@
 
 {% block content %}
 {{ super() }}
-<p>Содержимое страницы Достижения
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<form action="/achievements" method="post" class="form-achievements">
+  <p><label>Пользователь: </label> <input type="text" name="username" value="" required />
+  <p><label>Достижение: </label> <input type="text" name="achievement" value="" required />
+  <p><label>Баллы: </label> <input type="text" name="points" value="" required />
+  <p><label>Описание: </label>
+  <p><textarea name="message" rows="7" cols=40></textarea>
+  <p><input type="submit" value="Отправить" />
+</form>
     {% endblock %}

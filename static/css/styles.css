@@ -45,13 +45,21 @@ div.content {
     margin: 10px;
 }
 
-.from-contact label {
+.from-achievements label {
     display: inline-block;
     min-width: 80px;
 }
-.from-contact p {margin: 10px 0 10px 0;}
-.from-contact input[type=submit], textarea {
+.from-achievements p {margin: 10px 0 10px 0;}
+.from-achievements input[type=submit], textarea {
     font-size: 16px;
 }
 
 .flash {padding: 10px;}
+.flash.success {
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
+}
+.flash.error {
+    border: 1px solid #FF4343;
+    background: #FF9C9C;
+}
