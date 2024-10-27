@@ -4,12 +4,11 @@
 {{ super() }}
 <hr>
 <h2>Список достижений</h2>
-<ul class="list_achievements">
-    {% for ach in achievements %}
+<ul class="list-achievs">
+    {% for ach in achievs %}
     <li>
-        <p class="title"><a href="{{ url_for('showAchiev', id_achievement=ach.id) }}">{{ach.title}}</a></p>
+        <p class="title"><a href="{{ url_for('showAchiev', id_achiev=ach.id}}">{{ach.title}}</a></p>
         <p class="annonce">{{ ach.text[:50] }}</p>
-        <p class="points">{{ ach.points }}</p>
     </li>
     {% endfor %}
 </ul>
